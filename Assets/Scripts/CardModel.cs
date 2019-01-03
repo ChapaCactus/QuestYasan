@@ -15,7 +15,7 @@ namespace CCG
         public string Name => _row._Name;
         public CardCategory Category => _category;
         public int Cost => _row._Cost;
-
+        // 画像ファイル名
         public string SpriteName => _row._Sprite;
 
         public static CardModel Create(CardMaster.rowIds id)
