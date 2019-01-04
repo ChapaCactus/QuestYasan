@@ -23,5 +23,12 @@ namespace CCG
             var prefab = Resources.Load<CardView>(PrefabPath);
             return Instantiate(prefab, parent);
         }
+
+        public void Setup(CardModel model)
+        {
+            var spritePath = $"Sprites/Card/{model.SpriteName}";
+            Sprite sprite = Resources.Load<Sprite>(spritePath);
+            _cardImage.sprite = sprite;
+        }
     }
 }

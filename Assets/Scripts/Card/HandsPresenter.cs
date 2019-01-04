@@ -37,8 +37,12 @@ namespace CCG
             foreach (var loop in Enumerable.Range(0, HandModel.MaxHandSize))
             {
                 CardView cardView = CardView.Create(parent);
+                CardModel cardModel = _model.Cards[loop];
+
                 Vector3 cardPos = _view.CardPositions[loop];
                 cardView.transform.localPosition = cardPos;
+
+                cardView.Setup(cardModel);
 
                 // カードタップ時のイベント登録
                 cardView.OnSingleTap
