@@ -118,9 +118,9 @@ namespace Google2u
 
 		private CardMaster()
 		{
-			Rows.Add( new CardMasterRow("Grassland", "草原", "Field", "3", "Grassland"));
-			Rows.Add( new CardMasterRow("Goblin", "ゴブリン", "Enemy", "1", "Goblin"));
-			Rows.Add( new CardMasterRow("GoblinKing", "ゴブリン王", "Boss", "2", "GoblinKing"));
+			Rows.Add( new CardMasterRow("Grassland", "草原", "Field", "3", "CubicCactus"));
+			Rows.Add( new CardMasterRow("Goblin", "ゴブリン", "Enemy", "1", "Spaceman128"));
+			Rows.Add( new CardMasterRow("GoblinKing", "ゴブリン王", "Boss", "2", "Item001"));
 		}
 		public IGoogle2uRow GetGenRow(string in_RowString)
 		{
