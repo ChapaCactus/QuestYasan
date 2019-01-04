@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -7,16 +8,14 @@ namespace CCG
 {
     public class HandsView : MonoBehaviour
     {
-        private const string PrefabPath = "Prefabs/Hands";
-
         [SerializeField] private Transform _cardsParent;
+        [SerializeField] private List<Transform> _cardPositions;
 
         public Transform CardsParent => _cardsParent;
 
-        public static HandsView Create(Transform parent)
-        {
-            var prefab = Resources.Load<HandsView>(PrefabPath);
-            return Instantiate(prefab, parent);
-        }
+        // カード配置位置
+        public List<Vector3> CardPositions => _cardPositions
+            .Select(pos => pos.localPosition)
+            .ToList();
     }
 }

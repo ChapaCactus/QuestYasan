@@ -13,6 +13,14 @@ namespace CCG
 
         public bool IsFull => Cards.Count >= MaxHandSize;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        public HandModel()
+        {
+            Cards = new List<CardModel>();
+        }
+
         public void SetCard(CardModel card)
         {
             if(IsFull)

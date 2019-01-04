@@ -19,6 +19,9 @@ namespace CCG
         /// </summary>
         public UserModel()
         {
+            Deck = new DeckModel();
+            Hand = new HandModel();
+
             FillDeck();
             // 初手
             FillHand();
