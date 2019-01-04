@@ -17,5 +17,15 @@ namespace CCG
             HandPresenter = HandsPresenter.Create(MainCanvas.I.UIParent);
             HandPresenter.Setup(UserModel.Hand);
         }
+
+        public void OnSelectCard(int select)
+        {
+            // 選択したカードのみ選択状態にする
+            UserModel.Hand.Cards
+                .ForEach(card => {
+                    bool isMatch = card.UniqueId == select;
+                    card.IsSelect.Value = isMatch;
+                });
+        }
     }
 }

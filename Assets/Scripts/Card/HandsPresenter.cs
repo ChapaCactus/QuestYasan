@@ -14,7 +14,7 @@ namespace CCG
         private HandModel _model;
         private HandsView _view;
 
-        public List<CardView> Cards { get; private set; } = new List<CardView>();
+        public List<CardPresenter> Cards { get; private set; } = new List<CardPresenter>();
 
         public static HandsPresenter Create(Transform parent)
         {
@@ -36,26 +36,17 @@ namespace CCG
         {
             foreach (var loop in Enumerable.Range(0, HandModel.MaxHandSize))
             {
-                CardView cardView = CardView.Create(parent);
+                // カード生成
+                CardPresenter cardPresenter = CardPresenter.Create(parent);
                 CardModel cardModel = _model.Cards[loop];
-
+                // カード位置
                 Vector3 cardPos = _view.CardPositions[loop];
-                cardView.transform.localPosition = cardPos;
+                cardPresenter.transform.localPosition = cardPos;
+                // カード設定
+                cardPresenter.Setup(cardModel, cardPos);
 
-                cardView.Setup(cardModel);
-
-                // カードタップ時のイベント登録
-                cardView.OnSingleTap
-                    .Subscribe(_ => OnTapCard(loop))
-                    .AddTo(this);
-
-                Cards.Add(cardView);
+                Cards.Add(cardPresenter);
             }
-        }
-
-        private void OnTapCard(int index)
-        {
-            Debug.Log($"カードがタップされました。 {index}");
         }
     }
 
