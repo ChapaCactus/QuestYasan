@@ -29,5 +29,23 @@ namespace CCG
 
             return card;
         }
+
+        public void Add()
+        {
+            if(IsFull)
+            {
+                Debug.Log("Deck is full.");
+                return;
+            }
+
+            // ランダムなカードIDを取得
+            CardMaster.rowIds id = Enum.GetValues(typeof(CardMaster.rowIds))
+                .Cast<CardMaster.rowIds>()
+                .OrderBy(x => Guid.NewGuid())
+                .FirstOrDefault();
+
+            CardModel model = CardModel.Create(id);
+            Cards.Add(model);
+        }
     }
 }
