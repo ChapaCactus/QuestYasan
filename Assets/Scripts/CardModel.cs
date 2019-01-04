@@ -13,6 +13,7 @@ namespace CCG
         private CardCategory _category;
         private readonly int _uniqueId;
 
+        public CardMaster.rowIds MasterId { get; private set; }
         public int UniqueId => _uniqueId;
 
         public string Name => _row._Name;
@@ -21,20 +22,17 @@ namespace CCG
         // 画像ファイル名
         public string SpriteName => _row._Sprite;
 
-        public static CardModel Create(CardMaster.rowIds masterId, int uniqueId)
-        {
-            var cardMasterRow = CardMaster.Instance.GetRow(masterId);
-            return new CardModel(cardMasterRow, uniqueId);
-        }
-
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public CardModel(CardMasterRow cardMasterRow, int uniqueId)
+        public CardModel(CardMaster.rowIds masterId, int uniqueId)
         {
+            MasterId = masterId;
+            _uniqueId = uniqueId;
+
+            var cardMasterRow = CardMaster.Instance.GetRow(masterId);
             _row = cardMasterRow;
             _category = (CardCategory)Enum.Parse(typeof(CardCategory), cardMasterRow._Category);
-            _uniqueId = uniqueId;
         }
     }
 }

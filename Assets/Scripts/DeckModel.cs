@@ -46,7 +46,7 @@ namespace CCG
 
             int uniqueId = GameManager.UniqueIdManager.GetNewId();
 
-            CardModel model = CardModel.Create(masterId, uniqueId);
+            CardModel model = new CardModel(masterId, uniqueId);
             Cards.Add(model);
         }
     }
