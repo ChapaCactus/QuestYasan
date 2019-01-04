@@ -8,7 +8,7 @@ namespace CCG
     public class HandPresenter
     {
         private HandModel _model;
-        private HandView _view;
+        private HandsView _view;
 
         public List<CardView> Cards { get; private set; } = new List<CardView>();
 
@@ -18,7 +18,7 @@ namespace CCG
         public HandPresenter(HandModel model)
         {
             _model = model;
-            _view = HandView.Create(null);
+            _view = HandsView.Create(null);
 
             CreateCardViews(_view.CardsParent);
         }

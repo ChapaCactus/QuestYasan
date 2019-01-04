@@ -5,15 +5,17 @@ using UnityEngine.Assertions;
 
 namespace CCG
 {
-    public class HandView : MonoBehaviour
+    public class HandsView : MonoBehaviour
     {
+        private const string PrefabPath = "Prefabs/Hands";
+
         [SerializeField] private Transform _cardsParent;
 
         public Transform CardsParent => _cardsParent;
 
-        public static HandView Create(Transform parent)
+        public static HandsView Create(Transform parent)
         {
-            var prefab = Resources.Load<HandView>("");
+            var prefab = Resources.Load<HandsView>(PrefabPath);
             return Instantiate(prefab, parent);
         }
     }
