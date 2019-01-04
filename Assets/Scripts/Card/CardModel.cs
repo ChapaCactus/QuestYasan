@@ -20,6 +20,7 @@ namespace CCG
         public BoolReactiveProperty IsSelect { get; private set; }
 
         public string Name => _row._Name;
+        public string Description => _row._Description;
         public CardCategory Category => _category;
         public int Cost => _row._Cost;
         // 画像ファイル名

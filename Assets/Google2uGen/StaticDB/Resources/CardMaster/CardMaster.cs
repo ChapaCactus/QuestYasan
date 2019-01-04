@@ -15,12 +15,14 @@ namespace Google2u
 	public class CardMasterRow : IGoogle2uRow
 	{
 		public string _Name;
+		public string _Description;
 		public string _Category;
 		public int _Cost;
 		public string _Sprite;
-		public CardMasterRow(string __ID, string __Name, string __Category, string __Cost, string __Sprite) 
+		public CardMasterRow(string __ID, string __Name, string __Description, string __Category, string __Cost, string __Sprite) 
 		{
 			_Name = __Name.Trim();
+			_Description = __Description.Trim();
 			_Category = __Category.Trim();
 			{
 			int res;
@@ -32,7 +34,7 @@ namespace Google2u
 			_Sprite = __Sprite.Trim();
 		}
 
-		public int Length { get { return 4; } }
+		public int Length { get { return 5; } }
 
 		public string this[int i]
 		{
@@ -51,12 +53,15 @@ namespace Google2u
 					ret = _Name.ToString();
 					break;
 				case 1:
-					ret = _Category.ToString();
+					ret = _Description.ToString();
 					break;
 				case 2:
-					ret = _Cost.ToString();
+					ret = _Category.ToString();
 					break;
 				case 3:
+					ret = _Cost.ToString();
+					break;
+				case 4:
 					ret = _Sprite.ToString();
 					break;
 			}
@@ -71,6 +76,9 @@ namespace Google2u
 			{
 				case "Name":
 					ret = _Name.ToString();
+					break;
+				case "Description":
+					ret = _Description.ToString();
 					break;
 				case "Category":
 					ret = _Category.ToString();
@@ -89,6 +97,7 @@ namespace Google2u
 		{
 			string ret = System.String.Empty;
 			ret += "{" + "Name" + " : " + _Name.ToString() + "} ";
+			ret += "{" + "Description" + " : " + _Description.ToString() + "} ";
 			ret += "{" + "Category" + " : " + _Category.ToString() + "} ";
 			ret += "{" + "Cost" + " : " + _Cost.ToString() + "} ";
 			ret += "{" + "Sprite" + " : " + _Sprite.ToString() + "} ";
@@ -118,9 +127,9 @@ namespace Google2u
 
 		private CardMaster()
 		{
-			Rows.Add( new CardMasterRow("Grassland", "草原", "Field", "3", "CubicCactus"));
-			Rows.Add( new CardMasterRow("Goblin", "ゴブリン", "Enemy", "1", "Spaceman128"));
-			Rows.Add( new CardMasterRow("GoblinKing", "ゴブリン王", "Boss", "2", "Item001"));
+			Rows.Add( new CardMasterRow("Grassland", "草原", "草原のカード", "Field", "3", "CubicCactus"));
+			Rows.Add( new CardMasterRow("Goblin", "ゴブリン", "ゴブリンのカード", "Enemy", "1", "Spaceman128"));
+			Rows.Add( new CardMasterRow("GoblinKing", "ゴブリン王", "ゴブリン王のカード", "Boss", "2", "Item001"));
 		}
 		public IGoogle2uRow GetGenRow(string in_RowString)
 		{
