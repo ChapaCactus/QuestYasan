@@ -12,6 +12,7 @@ namespace CCG
 
         public HandsPresenter Hands { get; private set; }
         public CardDescriptionPresenter CardDescription { get; private set; }
+        public ScreenButtonPresenter ScreenButton { get; private set; }
 
         public void Initialize()
         {
@@ -22,6 +23,9 @@ namespace CCG
 
             CardDescription = CardDescriptionPresenter.Create(MainCanvas.I.UIParent);
             CardDescription.gameObject.SetActive(false);
+
+            ScreenButton = ScreenButtonPresenter.Create(MainCanvas.I.ScreenButtonParent);
+            ScreenButton.Setup();
         }
 
         public void OnSelectCard(int select)
@@ -38,6 +42,19 @@ namespace CCG
                 .First(card => card.IsSelect.Value);
             CardDescription.SetText(selectCard.Description);
             CardDescription.gameObject.SetActive(true);
+        }
+
+        /// <summary>
+        /// 画面ボタンを押した時
+        /// </summary>
+        public void OnScreenButton()
+        {
+            // 説明文非表示
+            CardDescription.gameObject.SetActive(false);
+
+            // カード選択解除
+            UserModel.Hand.Cards
+                .ForEach(card => card.IsSelect.Value = false);
         }
     }
 }
