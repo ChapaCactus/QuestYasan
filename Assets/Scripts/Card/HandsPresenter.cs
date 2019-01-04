@@ -51,7 +51,7 @@ namespace CCG
 
         private void OnTapCard(int index)
         {
-
+            Debug.Log($"カードがタップされました。 {index}");
         }
     }
 
