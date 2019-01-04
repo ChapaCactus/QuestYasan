@@ -19,6 +19,9 @@ namespace CCG
         /// </summary>
         public UserModel()
         {
+            FillDeck();
+            // 初手
+            FillHand();
         }
 
         /// <summary>
@@ -26,7 +29,31 @@ namespace CCG
         /// </summary>
         public void OnStartUserTurn()
         {
+        }
 
+        /// <summary>
+        /// デッキを満たす
+        /// </summary>
+        private void FillDeck()
+        {
+            // デッキ枚数上限までカード追加
+            while (!Deck.IsFull)
+            {
+                Deck.Add();
+            }
+        }
+
+        /// <summary>
+        /// 一杯になるまでカードを引く
+        /// </summary>
+        private void FillHand()
+        {
+            // カードを引く
+            while (!Hand.IsFull)
+            {
+                var draw = Deck.Draw();
+                Hand.SetCard(draw);
+            }
         }
     }
 }

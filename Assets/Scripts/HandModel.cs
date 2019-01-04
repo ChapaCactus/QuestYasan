@@ -7,19 +7,20 @@ namespace CCG
 {
     public class HandModel
     {
-        private const int DefaultHandSize = 4;
+        private const int MaxHandSize = 4;
 
         public List<CardModel> Cards { get; private set; }
 
-        /// <summary>
-        /// 初期手札枚数までカードを引く
-        /// </summary>
-        public void DrawForDefaultSize()
+        public bool IsFull => Cards.Count >= MaxHandSize;
+
+        public void SetCard(CardModel card)
         {
-            if(Cards.Count >= DefaultHandSize)
+            if(IsFull)
             {
                 return;
             }
+
+            Cards.Add(card);
         }
     }
 }
