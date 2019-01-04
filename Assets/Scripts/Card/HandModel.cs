@@ -7,7 +7,7 @@ namespace CCG
 {
     public class HandModel
     {
-        private const int MaxHandSize = 4;
+        public const int MaxHandSize = 4;
 
         public List<CardModel> Cards { get; private set; }
 
