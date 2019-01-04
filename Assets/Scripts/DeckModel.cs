@@ -39,12 +39,14 @@ namespace CCG
             }
 
             // ランダムなカードIDを取得
-            CardMaster.rowIds id = Enum.GetValues(typeof(CardMaster.rowIds))
+            CardMaster.rowIds masterId = Enum.GetValues(typeof(CardMaster.rowIds))
                 .Cast<CardMaster.rowIds>()
                 .OrderBy(x => Guid.NewGuid())
                 .FirstOrDefault();
 
-            CardModel model = CardModel.Create(id);
+            int uniqueId = GameManager.UniqueIdManager.GetNewId();
+
+            CardModel model = CardModel.Create(masterId, uniqueId);
             Cards.Add(model);
         }
     }

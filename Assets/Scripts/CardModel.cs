@@ -21,9 +21,9 @@ namespace CCG
         // 画像ファイル名
         public string SpriteName => _row._Sprite;
 
-        public static CardModel Create(CardMaster.rowIds id, int uniqueId)
+        public static CardModel Create(CardMaster.rowIds masterId, int uniqueId)
         {
-            var cardMasterRow = CardMaster.Instance.GetRow(id);
+            var cardMasterRow = CardMaster.Instance.GetRow(masterId);
             return new CardModel(cardMasterRow, uniqueId);
         }
 

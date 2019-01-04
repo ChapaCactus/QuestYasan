@@ -10,11 +10,14 @@ namespace CCG
         // TODO: 乱数取得にする
         private int _number;
 
-        public int GetNewId => _number++;
-
         public void Initialize()
         {
             _number = 0;
+        }
+
+        public int GetNewId()
+        {
+            return _number++;
         }
     }
 }
