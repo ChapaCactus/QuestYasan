@@ -37,7 +37,7 @@ namespace CCG
             UserModel.Hand.Cards
                 .ForEach(card => {
                     bool isMatch = card.UniqueId == select;
-                    card.IsSelect.Value = isMatch;
+                    card.SetIsSelect(isMatch);
                 });
 
             // 説明文更新
@@ -57,7 +57,7 @@ namespace CCG
 
             // カード選択解除
             UserModel.Hand.Cards
-                .ForEach(card => card.IsSelect.Value = false);
+                .ForEach(card => card.SetIsSelect(false));
         }
     }
 }

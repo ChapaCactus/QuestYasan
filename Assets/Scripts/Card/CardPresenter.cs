@@ -41,6 +41,12 @@ namespace CCG
             _model.IsSelect
                 .Subscribe(_view.OnSelect)
                 .AddTo(this);
+
+            // カード選択がオンになった時のみ
+            _model.IsSelect
+                .Where(isSelect => isSelect)
+                .Subscribe(isSelect => GameManager.BattleManager.OnSelectCard(_model.UniqueId))
+                .AddTo(this);
         }
 
         private void BindViewEvents()
