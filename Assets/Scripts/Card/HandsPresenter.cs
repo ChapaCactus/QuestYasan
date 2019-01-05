@@ -45,6 +45,12 @@ namespace CCG
                 // カード設定
                 cardPresenter.Setup(cardModel, cardPos);
 
+                // カードが選択状態になった時の処理購読
+                cardModel.IsSelect
+                    .Where(isSelect => isSelect)
+                    .Subscribe(isSelect => GameManager.BattleManager.OnSelectCard(cardModel.UniqueId))
+                    .AddTo(this);
+
                 Cards.Add(cardPresenter);
             }
         }

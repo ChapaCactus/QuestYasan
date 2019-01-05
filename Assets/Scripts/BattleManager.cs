@@ -28,6 +28,9 @@ namespace CCG
             ScreenButton.Setup();
         }
 
+        /// <summary>
+        /// カードが選択された
+        /// </summary>
         public void OnSelectCard(int select)
         {
             // 選択したカードのみ選択状態にする

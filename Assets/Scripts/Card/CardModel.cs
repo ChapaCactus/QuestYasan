@@ -40,5 +40,10 @@ namespace CCG
 
             IsSelect = new BoolReactiveProperty(false);
         }
+
+        public void SetIsSelect(bool isSelect)
+        {
+            IsSelect.Value = isSelect;
+        }
     }
 }

@@ -31,14 +31,23 @@ namespace CCG
             Sprite sprite = Resources.Load<Sprite>(spritePath);
             _view.SetCardSprite(sprite);
 
-            // カードタップ時のイベント登録
-            _view.OnSingleTap
-                .Subscribe(_ => GameManager.BattleManager.OnSelectCard(_model.UniqueId))
-                .AddTo(this);
+            BindViewEvents();
+            BindModelEvents();
+        }
 
+        private void BindModelEvents()
+        {
             // 選択状態イベントの購読
             _model.IsSelect
                 .Subscribe(_view.OnSelect)
+                .AddTo(this);
+        }
+
+        private void BindViewEvents()
+        {
+            // カードタップ時のイベント登録
+            _view.OnSingleTap
+                .Subscribe(_ => _model.SetIsSelect(true))
                 .AddTo(this);
         }
     }
