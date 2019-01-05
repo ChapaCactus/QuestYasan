@@ -14,6 +14,9 @@ namespace CCG
         {
             _model = model;
             _view = GetComponent<FloorView>();
+
+            // 表示初期化
+            _view.SetFloorNameText(_model.FloorName);
         }
     }
 }

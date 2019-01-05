@@ -7,6 +7,8 @@ namespace CCG
 {
     public class FloorView : MonoBehaviour
     {
+        private const float Height = 200;
+
         [SerializeField] private TextMeshProUGUI _floorNameText;
 
         public void SetFloorNameText(string text)

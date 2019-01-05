@@ -8,8 +8,16 @@ namespace CCG
     [RequireComponent(typeof(StageView))]
     public class StagePresenter : MonoBehaviour
     {
+        private const string PrefabPath = "Prefabs/Stage";
+
         private StageModel _model;
         private StageView _view;
+
+        public static StagePresenter Create(Transform parent)
+        {
+            var prefab = Resources.Load<StagePresenter>(PrefabPath);
+            return Instantiate(prefab, parent);
+        }
 
         public void Setup()
         {

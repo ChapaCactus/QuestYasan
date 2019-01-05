@@ -13,6 +13,7 @@ namespace CCG
         public HandsPresenter Hands { get; private set; }
         public CardDescriptionPresenter CardDescription { get; private set; }
         public ScreenButtonPresenter ScreenButton { get; private set; }
+        public StagePresenter Stage { get; private set; }
 
         public void Initialize()
         {
@@ -26,6 +27,10 @@ namespace CCG
 
             ScreenButton = ScreenButtonPresenter.Create(MainCanvas.I.ScreenButtonParent);
             ScreenButton.Setup();
+
+            // ステージ初期化
+            Stage = StagePresenter.Create(MainCanvas.I.UIParent);
+            Stage.Setup();
         }
 
         /// <summary>
