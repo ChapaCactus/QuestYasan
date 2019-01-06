@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UniRx;
+using Google2u;
 
 namespace CCG
 {
@@ -25,6 +27,22 @@ namespace CCG
             _view = GetComponent<StageView>();
 
             BindViewEvents();
+
+            // 初期フロア追加
+            foreach (var loop in Enumerable.Range(0, 3))
+            {
+                // ランダムなカードIDを取得
+                CardMaster.rowIds masterId = Enum.GetValues(typeof(CardMaster.rowIds))
+                    .Cast<CardMaster.rowIds>()
+                    .OrderBy(x => Guid.NewGuid())
+                    .FirstOrDefault();
+
+                int uniqueId = GameManager.UniqueIdManager.GetNewId();
+                CardModel cardModel = new CardModel(masterId, uniqueId);
+                FloorModel floorModel = new FloorModel(cardModel);
+
+                AddFloor(floorModel);
+            }
         }
 
         public void AddFloor(FloorModel floor)

@@ -17,7 +17,8 @@ namespace CCG
 
         public void AddFloor(FloorModel floor)
         {
-
+            FloorPresenter floorPresenter = FloorPresenter.Create(_floorsParent);
+            floorPresenter.Setup(floor);
         }
     }
 }
