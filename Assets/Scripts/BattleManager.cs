@@ -14,6 +14,7 @@ namespace CCG
         public CardDescriptionPresenter CardDescription { get; private set; }
         public ScreenButtonPresenter ScreenButton { get; private set; }
         public StagePresenter Stage { get; private set; }
+        public CharacterPresenter Character { get; private set; }
 
         public void Initialize()
         {
@@ -31,6 +32,15 @@ namespace CCG
             // ステージ初期化
             Stage = StagePresenter.Create(MainCanvas.I.UIParent);
             Stage.Setup();
+
+            StartBattle();
+        }
+
+        public void StartBattle()
+        {
+            // TODO: 現在のフロアで開始
+            Character = CharacterPresenter.Create(Stage.Floors[0].transform);
+            Character.Initialize();
         }
 
         /// <summary>

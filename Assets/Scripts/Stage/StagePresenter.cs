@@ -12,8 +12,12 @@ namespace CCG
     {
         private const string PrefabPath = "Prefabs/Stage";
 
+        [SerializeField] private Transform _floorsParent;
+
         private StageModel _model;
         private StageView _view;
+
+        public List<FloorPresenter> Floors { get; private set; } = new List<FloorPresenter>();
 
         public static StagePresenter Create(Transform parent)
         {
@@ -26,6 +30,9 @@ namespace CCG
             _model = new StageModel();
             _view = GetComponent<StageView>();
 
+            Floors = new List<FloorPresenter>();
+
+            BindModelEvents();
             BindViewEvents();
 
             // 初期フロア追加
@@ -50,12 +57,23 @@ namespace CCG
             _model.Floors.Add(floor);
         }
 
-        private void BindViewEvents()
+        private void BindModelEvents()
         {
             // フロア追加時
             _model.Floors.ObserveAdd()
-                .Subscribe(floor => _view.AddFloor(floor.Value))
+                .Subscribe(model =>
+                {
+                    // Presenterを作成
+                    FloorPresenter presenter = FloorPresenter.Create(_floorsParent);
+                    presenter.transform.SetAsFirstSibling();
+                    presenter.Setup(model.Value);
+                    Floors.Add(presenter);
+                })
                 .AddTo(this);
+        }
+
+        private void BindViewEvents()
+        {
         }
     }
 

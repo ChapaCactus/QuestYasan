@@ -251,7 +251,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 7
   m_Spacing: 0
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
@@ -321,7 +321,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6f33c48ba284839b5e29cdad3c775c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _floorsParent: {fileID: 2504247964172273434}
 --- !u!114 &2504247964595408159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,3 +333,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fbe6f627856148ebb03590e5592ea4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _floorsParent: {fileID: 2504247964172273434}

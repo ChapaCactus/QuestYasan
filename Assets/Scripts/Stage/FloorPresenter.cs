@@ -9,6 +9,10 @@ namespace CCG
     {
         private const string PrefabPath = "Prefabs/Floor";
 
+        // 開始地点, 終了地点
+        [SerializeField] private Transform _startPos;
+        [SerializeField] private Transform _endPos;
+
         private FloorModel _model;
         private FloorView _view;
 
@@ -25,6 +29,16 @@ namespace CCG
 
             // 表示初期化
             _view.SetFloorNameText(_model.FloorName);
+        }
+
+        /// <summary>
+        /// このフロアの現在位置を取得する
+        /// </summary>
+        /// <returns>現在位置</returns>
+        /// <param name="progress">進捗度</param>
+        public Vector2 GetPositionLerp(float progress)
+        {
+            return Vector2.Lerp(_startPos.localPosition, _endPos.localPosition, progress);
         }
     }
 }
