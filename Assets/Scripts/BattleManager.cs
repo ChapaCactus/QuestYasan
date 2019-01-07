@@ -10,6 +10,7 @@ namespace CCG
     {
         public UserModel UserModel { get; private set; }
 
+        public HeaderPresenter Header { get; private set; }
         public HandsPresenter Hands { get; private set; }
         public CardDescriptionPresenter CardDescription { get; private set; }
         public ScreenButtonPresenter ScreenButton { get; private set; }
@@ -19,6 +20,14 @@ namespace CCG
         public void Initialize()
         {
             UserModel = new UserModel();
+
+            // ヘッダー
+            Header = HeaderPresenter.Create(MainCanvas.I.UIParent);
+            var headerParam = new HeaderParam()
+            {
+                gold = 1000,
+            };
+            Header.Initialize(headerParam);
 
             // 手札の初期化
             Hands = HandsPresenter.Create(MainCanvas.I.UIParent);

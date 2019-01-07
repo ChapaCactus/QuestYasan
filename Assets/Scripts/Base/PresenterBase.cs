@@ -11,6 +11,11 @@ namespace CCG
             _isInitialized = true;
         }
 
+        public virtual void Initialize(IParameter param)
+        {
+            Initialize();
+        }
+
         protected abstract void BindModelEvents();
         protected abstract void BindViewEvents();
     }
