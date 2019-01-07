@@ -25,7 +25,7 @@ namespace CCG
             Header = HeaderPresenter.Create(MainCanvas.I.UIParent);
             var headerParam = new HeaderParam()
             {
-                gold = 1000,
+                UserModel = UserModel,
             };
             Header.Initialize(headerParam);
 

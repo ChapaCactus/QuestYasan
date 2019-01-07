@@ -6,6 +6,6 @@ namespace CCG
 {
     public class HeaderParam : IParameter
     {
-        public int gold { get; set; }
+        public UserModel UserModel { get; set; }
     }
 }

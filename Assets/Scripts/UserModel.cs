@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UniRx;
 
 namespace CCG
 {
@@ -14,6 +15,8 @@ namespace CCG
         /// </summary>
         public HandModel Hand { get; private set; }
 
+        public IntReactiveProperty Gold { get; private set; } = new IntReactiveProperty(0);
+
         /// <summary>
         /// コンストラクタ
         /// </summary>
@@ -21,6 +24,8 @@ namespace CCG
         {
             Deck = new DeckModel();
             Hand = new HandModel();
+
+            Gold.Value = 1233;
 
             FillDeck();
             // 初手

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 namespace CCG
 {
@@ -25,17 +26,25 @@ namespace CCG
             _model = new HeaderModel(param as HeaderParam);
             _view = GetComponent<HeaderView>();
 
-            _view.SetGoldText(_model.Gold);
+            BindModelEvents();
+            BindViewEvents();
+
+            // 表示初期化
+            _view.SetGoldText(_model.UserModel.Gold.Value);
 
             _isInitialized = true;
         }
 
         protected override void BindModelEvents()
         {
+            _model.UserModel.Gold.AsObservable()
+                .Subscribe(_view.SetGoldText)
+                .AddTo(this);
         }
 
         protected override void BindViewEvents()
         {
         }
     }
+
 }

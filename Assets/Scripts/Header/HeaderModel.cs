@@ -6,11 +6,11 @@ namespace CCG
 {
     public class HeaderModel
     {
-        public int Gold { get; private set; }
+        public UserModel UserModel { get; private set; }
 
         public HeaderModel(HeaderParam param)
         {
-            Gold = param.gold;
+            UserModel = param.UserModel;
         }
     }
 }
