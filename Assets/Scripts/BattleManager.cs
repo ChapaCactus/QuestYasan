@@ -20,19 +20,23 @@ namespace CCG
         {
             UserModel = new UserModel();
 
+            // 手札の初期化
             Hands = HandsPresenter.Create(MainCanvas.I.UIParent);
             Hands.Setup(UserModel.Hand);
 
+            // カード説明文初期化
             CardDescription = CardDescriptionPresenter.Create(MainCanvas.I.UIParent);
             CardDescription.gameObject.SetActive(false);
 
+            // スクリーンボタンの初期化
             ScreenButton = ScreenButtonPresenter.Create(MainCanvas.I.ScreenButtonParent);
             ScreenButton.Setup();
 
-            // ステージ初期化
+            // ステージの初期化
             Stage = StagePresenter.Create(MainCanvas.I.UIParent);
             Stage.Setup();
 
+            // 戦闘開始
             StartBattle();
         }
 

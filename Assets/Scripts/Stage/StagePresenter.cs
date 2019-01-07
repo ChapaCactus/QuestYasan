@@ -36,7 +36,7 @@ namespace CCG
             BindViewEvents();
 
             // 初期フロア追加
-            foreach (var loop in Enumerable.Range(0, 3))
+            foreach (var loop in Enumerable.Range(0, 8))
             {
                 // ランダムなカードIDを取得
                 CardMaster.rowIds masterId = Enum.GetValues(typeof(CardMaster.rowIds))
