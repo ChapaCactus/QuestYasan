@@ -16,6 +16,20 @@ namespace CCG
         private FloorModel _model;
         private FloorView _view;
 
+        public float Progress
+        {
+            get
+            {
+                return _model.Progress;
+            }
+            set
+            {
+                _model.Progress = value;
+            }
+        }
+
+        public bool IsOver => _model.IsOver;
+
         public static FloorPresenter Create(Transform parent)
         {
             var prefab = Resources.Load<FloorPresenter>(PrefabPath);
@@ -36,9 +50,10 @@ namespace CCG
         /// </summary>
         /// <returns>現在位置</returns>
         /// <param name="progress">進捗度</param>
-        public Vector2 GetPositionLerp(float progress)
+        public Vector2 GetPositionLerp()
         {
-            return Vector2.Lerp(_startPos.localPosition, _endPos.localPosition, progress);
+            return Vector2.Lerp(_startPos.localPosition, _endPos.localPosition, Progress);
         }
     }
+
 }

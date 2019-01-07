@@ -41,20 +41,19 @@ namespace CCG
         /// </summary>
         private void Next()
         {
-            if(_model.FloorProgress >= 1)
+            if(_currentFloor.Progress >= 1)
             {
                 return;
             }
 
             // TODO: 進捗度を定数化、もしくはModelから計算、もしもしくはGlobalゲーム速度から取得
             // 進捗度を進める
-            _model.FloorProgress += 0.01f;
+            _currentFloor.Progress += 0.01f;
 
             // 現在位置更新
-            FloorPresenter currentFloor = GetCurrentFloor();
-            transform.localPosition = currentFloor.GetPositionLerp(_model.FloorProgress);
+            transform.localPosition = _currentFloor.GetPositionLerp();
 
-            if(_model.FloorProgress >= 1)
+            if(_currentFloor.Progress >= 1)
             {
                 FloorUp();
             }
@@ -62,7 +61,7 @@ namespace CCG
 
         private void FloorUp()
         {
-            _model.FloorProgress = 0;
+            _currentFloor.Progress = 0;
             _model.CurrentFloorIndex++;
             // TODO: CurrentIndex変更時に購読する
             // 親を変更
