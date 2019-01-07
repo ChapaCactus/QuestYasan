@@ -21,8 +21,9 @@ namespace CCG
 
         public string Name => _row._Name;
         public string Description => _row._Description;
-        public CardCategory Category => _category;
         public int Cost => _row._Cost;
+        public CardCategory Category => _category;
+        public float EventPoint { get; private set; } = 1;
         // 画像ファイル名
         public string SpriteName => _row._Sprite;
 
@@ -37,6 +38,7 @@ namespace CCG
             var cardMasterRow = CardMaster.Instance.GetRow(masterId);
             _row = cardMasterRow;
             _category = (CardCategory)Enum.Parse(typeof(CardCategory), cardMasterRow._Category);
+            EventPoint = UnityEngine.Random.Range(0.4f, 0.6f);
 
             IsSelect = new BoolReactiveProperty(false);
         }

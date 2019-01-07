@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CCG
 {
@@ -8,6 +9,7 @@ namespace CCG
     public class FloorPresenter : MonoBehaviour
     {
         private const string PrefabPath = "Prefabs/Floor";
+        private const string EventPointPrefabPath = "Prefabs/EventPoint";
 
         // 開始地点, 終了地点
         [SerializeField] private Transform _startPos;
@@ -43,6 +45,12 @@ namespace CCG
 
             // 表示初期化
             _view.SetFloorNameText(_model.FloorName);
+
+            // TODO: クラス化
+            // EventPoint生成、初期化
+            var eventPointPrefab = Resources.Load<Image>(EventPointPrefabPath);
+            Image eventPoint = Instantiate(eventPointPrefab, transform);
+            eventPoint.transform.localPosition = GetPositionLerp(_model.CardModel.EventPoint);
         }
 
         /// <summary>
@@ -52,7 +60,12 @@ namespace CCG
         /// <param name="progress">進捗度</param>
         public Vector2 GetPositionLerp()
         {
-            return Vector2.Lerp(_startPos.localPosition, _endPos.localPosition, Progress);
+            return GetPositionLerp(Progress);
+        }
+
+        public Vector2 GetPositionLerp(float value)
+        {
+            return Vector2.Lerp(_startPos.localPosition, _endPos.localPosition, value);
         }
     }
 
