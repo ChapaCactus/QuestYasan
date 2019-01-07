@@ -8,7 +8,7 @@ using Google2u;
 namespace CCG
 {
     [RequireComponent(typeof(StageView))]
-    public class StagePresenter : MonoBehaviour
+    public class StagePresenter : PresenterBase
     {
         private const string PrefabPath = "Prefabs/Stage";
 
@@ -25,7 +25,7 @@ namespace CCG
             return Instantiate(prefab, parent);
         }
 
-        public void Setup()
+        public override void Initialize()
         {
             _model = new StageModel();
             _view = GetComponent<StageView>();
@@ -50,6 +50,8 @@ namespace CCG
 
                 AddFloor(floorModel);
             }
+
+            _isInitialized = true;
         }
 
         public void AddFloor(FloorModel floor)
@@ -57,7 +59,7 @@ namespace CCG
             _model.Floors.Add(floor);
         }
 
-        private void BindModelEvents()
+        protected override void BindModelEvents()
         {
             // フロア追加時
             _model.Floors.ObserveAdd()
@@ -72,7 +74,7 @@ namespace CCG
                 .AddTo(this);
         }
 
-        private void BindViewEvents()
+        protected override void BindViewEvents()
         {
         }
     }

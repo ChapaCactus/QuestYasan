@@ -70,6 +70,14 @@ namespace CCG
             _currentFloor.Progress = 0;
             _model.CurrentFloorIndex.Value++;
         }
+
+        protected override void BindModelEvents()
+        {
+        }
+
+        protected override void BindViewEvents()
+        {
+        }
     }
 
 }

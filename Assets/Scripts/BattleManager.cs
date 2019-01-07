@@ -34,7 +34,7 @@ namespace CCG
 
             // ステージの初期化
             Stage = StagePresenter.Create(MainCanvas.I.UIParent);
-            Stage.Setup();
+            Stage.Initialize();
 
             // 戦闘開始
             StartBattle();

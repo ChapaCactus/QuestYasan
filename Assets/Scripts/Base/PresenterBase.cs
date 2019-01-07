@@ -2,7 +2,7 @@
 
 namespace CCG
 {
-    public class PresenterBase : MonoBehaviour
+    public abstract class PresenterBase : MonoBehaviour
     {
         protected bool _isInitialized = false;
 
@@ -10,6 +10,9 @@ namespace CCG
         {
             _isInitialized = true;
         }
+
+        protected abstract void BindModelEvents();
+        protected abstract void BindViewEvents();
     }
 
 }
