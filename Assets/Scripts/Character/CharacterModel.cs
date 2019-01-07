@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 namespace CCG
 {
@@ -8,7 +9,7 @@ namespace CCG
     {
         private const float BaseMoveSpeed = 0.01f;
 
-        public int CurrentFloorIndex { get; set; } = 0;
+        public IntReactiveProperty CurrentFloorIndex { get; private set; } = new IntReactiveProperty(0);
 
         public float MoveSpeed => BaseMoveSpeed;
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UniRx;
 
 namespace CCG
 {
@@ -33,7 +34,18 @@ namespace CCG
             _model = new CharacterModel();
             _view = GetComponent<CharacterView>();
 
-            _currentFloor = GetCurrentFloor();
+            // 現在の階数の変更時
+            _model.CurrentFloorIndex.AsObservable()
+                .Subscribe(index => {
+                    // 親を変更後のフロアに設定
+                    _currentFloor = GameManager.BattleManager.Stage.Floors[index];
+                    transform.SetParent(_currentFloor.transform);
+                })
+                .AddTo(this);
+
+            _model.CurrentFloorIndex.Value = 0;
+
+            _isInitialized = true;
         }
 
         /// <summary>
@@ -41,36 +53,22 @@ namespace CCG
         /// </summary>
         private void Next()
         {
-            if(_currentFloor.Progress >= 1)
+            if(_currentFloor.IsOver)
             {
+                FloorUp();
                 return;
             }
 
             // 進捗度を進める
             _currentFloor.Progress += _model.MoveSpeed;
-
             // 現在位置更新
             transform.localPosition = _currentFloor.GetPositionLerp();
-
-            if(_currentFloor.Progress >= 1)
-            {
-                FloorUp();
-            }
         }
 
         private void FloorUp()
         {
             _currentFloor.Progress = 0;
-            _model.CurrentFloorIndex++;
-            // TODO: CurrentIndex変更時に購読する
-            // 親を変更
-            transform.SetParent(GetCurrentFloor().transform);
-        }
-
-        private FloorPresenter GetCurrentFloor()
-        {
-            int current = _model.CurrentFloorIndex;
-            return GameManager.BattleManager.Stage.Floors[current];
+            _model.CurrentFloorIndex.Value++;
         }
     }
 

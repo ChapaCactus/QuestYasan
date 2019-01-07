@@ -4,7 +4,12 @@ namespace CCG
 {
     public class PresenterBase : MonoBehaviour
     {
-        public virtual void Initialize() { }
+        protected bool _isInitialized = false;
+
+        public virtual void Initialize()
+        {
+            _isInitialized = true;
+        }
     }
 
 }
