@@ -43,7 +43,7 @@ namespace CCG
         public void StartBattle()
         {
             // TODO: 現在のフロアで開始
-            Character = CharacterPresenter.Create(Stage.Floors[0].transform);
+            Character = CharacterPresenter.Create(Stage.GetFloor(0).transform);
             Character.Initialize();
         }
 

@@ -6,4 +6,10 @@
         Enemy,
         Boss,
     }
+
+    public enum CharacterState
+    {
+        Waiting,
+        Moving,
+    }
 }

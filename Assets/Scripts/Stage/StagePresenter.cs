@@ -17,7 +17,7 @@ namespace CCG
         private StageModel _model;
         private StageView _view;
 
-        public List<FloorPresenter> Floors { get; private set; } = new List<FloorPresenter>();
+        private List<FloorPresenter> _floors { get; set; } = new List<FloorPresenter>();
 
         public static StagePresenter Create(Transform parent)
         {
@@ -30,13 +30,13 @@ namespace CCG
             _model = new StageModel();
             _view = GetComponent<StageView>();
 
-            Floors = new List<FloorPresenter>();
+            _floors = new List<FloorPresenter>();
 
             BindModelEvents();
             BindViewEvents();
 
             // 初期フロア追加
-            foreach (int loop in Enumerable.Range(0, 8))
+            foreach (int loop in Enumerable.Range(0, 2))
             {
                 // ランダムなカードIDを取得
                 CardMaster.rowIds masterId = Enum.GetValues(typeof(CardMaster.rowIds))
@@ -59,6 +59,11 @@ namespace CCG
             _model.Floors.Add(floor);
         }
 
+        public FloorPresenter GetFloor(int index)
+        {
+            return (index < _floors.Count) ? _floors[index] : null;
+        }
+
         protected override void BindModelEvents()
         {
             // フロア追加時
@@ -69,7 +74,7 @@ namespace CCG
                     FloorPresenter presenter = FloorPresenter.Create(_floorsParent);
                     presenter.transform.SetAsFirstSibling();
                     presenter.Setup(model.Value);
-                    Floors.Add(presenter);
+                    _floors.Add(presenter);
                 })
                 .AddTo(this);
         }
