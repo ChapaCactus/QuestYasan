@@ -44,6 +44,9 @@ namespace CCG
 
         protected override void BindViewEvents()
         {
+            _view.OnPauseButton
+                .Subscribe(_ => { })
+                .AddTo(this);
         }
     }
 
