@@ -46,9 +46,8 @@ namespace CCG
                 return;
             }
 
-            // TODO: 進捗度を定数化、もしくはModelから計算、もしもしくはGlobalゲーム速度から取得
             // 進捗度を進める
-            _currentFloor.Progress += 0.01f;
+            _currentFloor.Progress += _model.MoveSpeed;
 
             // 現在位置更新
             transform.localPosition = _currentFloor.GetPositionLerp();
