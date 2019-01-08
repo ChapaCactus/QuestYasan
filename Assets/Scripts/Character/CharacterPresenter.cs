@@ -32,7 +32,11 @@ namespace CCG
         {
             base.Initialize();
 
-            _model = new CharacterModel();
+            _model = new CharacterModel
+            {
+                Health = new IntReactiveProperty(100),
+                Attack = new IntReactiveProperty(5),
+            };
             _view = GetComponent<CharacterView>();
 
             BindModelEvents();
@@ -52,6 +56,11 @@ namespace CCG
         public void ForwardBattleTimer(float forward)
         {
             _model.AttackTimer.Value -= forward;
+        }
+
+        public void Damage(int damage)
+        {
+            _model.Damage(damage);
         }
 
         /// <summary>
@@ -135,6 +144,8 @@ namespace CCG
             // 0以下になっていればリセット
             if(_model.AttackTimer.Value <= 0)
             {
+                EnemyPresenter enemy = GameManager.BattleManager.Battle.Enemy.Value;
+                enemy.Damage(_model.Attack.Value);
                 // TODO: リセット値を正しいものにする
                 _model.AttackTimer.Value = 1;
                 Debug.Log("Attack!");

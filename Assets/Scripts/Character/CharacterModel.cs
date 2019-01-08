@@ -15,7 +15,12 @@ namespace CCG
 
         public float MoveSpeed => BaseMoveSpeed;
 
-        public FloatReactiveProperty AttackTimer { get; set; }
+        public bool IsPlayer { get; set; }
+        public IntReactiveProperty Health { get; set; }
+        public IntReactiveProperty Attack { get; set; }
+        public FloatReactiveProperty AttackTimer { get; private set; }
+
+        public bool IsDead => Health.Value <= 0;
 
         /// <summary>
         /// コンストラクタ
@@ -23,7 +28,24 @@ namespace CCG
         public CharacterModel()
         {
             State.Value = CharacterState.Waiting;
+
             AttackTimer = new FloatReactiveProperty(1);
+        }
+
+        public void Damage(int damage)
+        {
+            if(IsDead)
+            {
+                return;
+            }
+
+            Debug.Log($"Damage! left: {damage}, amount: {Health.Value - damage}");
+            Health.Value -= damage;
+
+            if(IsDead)
+            {
+                GameManager.BattleManager.OnDead(IsPlayer);
+            }
         }
     }
 

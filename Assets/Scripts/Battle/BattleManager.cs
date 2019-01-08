@@ -67,6 +67,17 @@ namespace CCG
             Battle.SetEnemy(enemy);
         }
 
+        public void OnDead(bool isPlayer)
+        {
+            Character.SetState(Enums.CharacterState.Waiting);
+            Battle.Enemy.Value.SetState(Enums.CharacterState.Waiting);
+
+            if(!isPlayer)
+            {
+                Character.SetState(Enums.CharacterState.Moving);
+            }
+        }
+
         /// <summary>
         /// カードが選択された
         /// </summary>

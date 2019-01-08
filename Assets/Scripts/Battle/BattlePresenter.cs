@@ -24,6 +24,7 @@ namespace CCG
             }
 
             Player.ForwardBattleTimer(BattleSpeed);
+            Enemy.Value.ForwardBattleTimer(BattleSpeed);
         }
 
         public static BattlePresenter Create(Transform parent)
