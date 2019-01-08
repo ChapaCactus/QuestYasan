@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
 
 namespace CCG
 {
     [RequireComponent(typeof(FloorView))]
-    public class FloorPresenter : MonoBehaviour
+    public class FloorPresenter : PresenterBase
     {
         private const string PrefabPath = "Prefabs/Floor";
         private const string EventPointPrefabPath = "Prefabs/EventPoint";
@@ -18,15 +19,17 @@ namespace CCG
         private FloorModel _model;
         private FloorView _view;
 
+        private BattleEventPoint _eventPoint;
+
         public float Progress
         {
             get
             {
-                return _model.Progress;
+                return _model.Progress.Value;
             }
             set
             {
-                _model.Progress = value;
+                _model.Progress.Value = value;
             }
         }
 
@@ -38,6 +41,7 @@ namespace CCG
             return Instantiate(prefab, parent);
         }
 
+        // TODO: Initializeに統合
         public void Setup(FloorModel model)
         {
             _model = model;
@@ -47,8 +51,16 @@ namespace CCG
             _view.SetFloorNameText(_model.FloorName);
 
             // TODO: バトル以外のEventを配置
-            BattleEventPoint eventPoint = BattleEventPoint.Create(transform);
-            eventPoint.transform.localPosition = GetPositionLerp(_model.CardModel.EventPoint);
+            _eventPoint = BattleEventPoint.Create(transform);
+            _eventPoint.transform.localPosition = GetPositionLerp(_model.CardModel.EventPoint);
+            // TODO: ゴブリン以外の敵への対応
+            _eventPoint.Setup(Google2u.EnemyMaster.rowIds.Goblin, _model.CardModel.EventPoint);
+        }
+
+        public override void Initialize()
+        {
+            BindModelEvents();
+            BindViewEvents();
         }
 
         /// <summary>
@@ -64,6 +76,25 @@ namespace CCG
         public Vector2 GetPositionLerp(float value)
         {
             return Vector2.Lerp(_startPos.localPosition, _endPos.localPosition, value);
+        }
+
+        protected override void BindModelEvents()
+        {
+            _model.Progress.AsObservable()
+                .Subscribe(OnProgressValueChanged)
+                .AddTo(this);
+        }
+
+        protected override void BindViewEvents()
+        {
+        }
+
+        private void OnProgressValueChanged(float progress)
+        {
+            if(progress >= _eventPoint.ProgressThreshold)
+            {
+                _eventPoint.OnHit();
+            }
         }
     }
 

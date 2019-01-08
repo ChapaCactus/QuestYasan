@@ -74,6 +74,7 @@ namespace CCG
                     FloorPresenter presenter = FloorPresenter.Create(_floorsParent);
                     presenter.transform.SetAsFirstSibling();
                     presenter.Setup(model.Value);
+                    presenter.Initialize();
                     _floors.Add(presenter);
                 })
                 .AddTo(this);

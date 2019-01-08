@@ -1,30 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 namespace CCG
 {
     public class FloorModel
     {
-        private float _progress = 0;
-
-        public float Progress
-        {
-            get
-            {
-                return _progress;
-            }
-
-            set
-            {
-                _progress = Mathf.Clamp01(value);
-            }
-        }
+        public FloatReactiveProperty Progress { get; private set; }
 
         /// <summary>
         /// 踏破済か
         /// </summary>
-        public bool IsOver => Progress >= 1;
+        public bool IsOver => Progress.Value >= 1;
 
         public CardModel CardModel { get; private set; }
 
@@ -32,7 +20,7 @@ namespace CCG
 
         public FloorModel(CardModel card)
         {
-            _progress = 0;
+            Progress = new FloatReactiveProperty(0);
             CardModel = card;
         }
     }

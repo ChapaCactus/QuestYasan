@@ -9,6 +9,8 @@ namespace CCG
     {
         private const string PrefabPath = "Prefabs/BattleEventPoint";
 
+        public float ProgressThreshold { get; private set; }
+
         public EnemyMaster.rowIds EnemyId { get; private set; }
         public EnemyMasterRow EnemyMasterRow { get; private set; }
 
@@ -18,14 +20,16 @@ namespace CCG
             return Instantiate(prefab, parent);
         }
 
-        public void Setup(EnemyMaster.rowIds enemyId)
+        public void Setup(EnemyMaster.rowIds enemyId, float progressThreshold)
         {
             EnemyId = enemyId;
             EnemyMasterRow = EnemyMaster.Instance.GetRow(EnemyId);
+            ProgressThreshold = progressThreshold;
         }
 
         public override void OnHit()
         {
+            Debug.Log("Hit");
             // 敵を生成、バトルマネージャにセット
             EnemyPresenter enemy = EnemyPresenter.Create(transform.parent);
             var param = new EnemyParam
