@@ -24,6 +24,9 @@ namespace CCG
                 Health = new IntReactiveProperty(10),
                 Attack = new IntReactiveProperty(1),
             };
+
+            BindModelEvents();
+            BindViewEvents();
         }
 
         public void ForwardBattleTimer(float forward)
@@ -55,7 +58,7 @@ namespace CCG
 
         private void OnAttackTimerValueChanged(float timer)
         {
-            // 0以下になっていればリセット
+            // 0以下になっていれば行動してリセット
             if (_model.AttackTimer.Value <= 0)
             {
                 CharacterPresenter player = GameManager.BattleManager.Character;

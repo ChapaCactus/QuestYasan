@@ -16,6 +16,7 @@ namespace CCG
         public float MoveSpeed => BaseMoveSpeed;
 
         public bool IsPlayer { get; set; }
+        public IntReactiveProperty MaxHealth { get; set; }
         public IntReactiveProperty Health { get; set; }
         public IntReactiveProperty Attack { get; set; }
         public FloatReactiveProperty AttackTimer { get; private set; }
@@ -29,7 +30,8 @@ namespace CCG
         {
             State.Value = CharacterState.Waiting;
 
-            AttackTimer = new FloatReactiveProperty(1);
+            float startTime = UnityEngine.Random.Range(1, 1.5f);
+            AttackTimer = new FloatReactiveProperty(startTime);
         }
 
         public void Damage(int damage)

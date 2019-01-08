@@ -34,7 +34,8 @@ namespace CCG
 
             _model = new CharacterModel
             {
-                Health = new IntReactiveProperty(100),
+                MaxHealth = new IntReactiveProperty(30),
+                Health = new IntReactiveProperty(30),
                 Attack = new IntReactiveProperty(5),
             };
             _view = GetComponent<CharacterView>();
@@ -44,6 +45,8 @@ namespace CCG
 
             _model.CurrentFloorIndex.Value = 0;
             _model.State.Value = CharacterState.Moving;
+
+            _view.SetHealthBarValue(_model.MaxHealth.Value, _model.Health.Value);
 
             _isInitialized = true;
         }
@@ -109,6 +112,11 @@ namespace CCG
             // AttackTimer更新時
             _model.AttackTimer.AsObservable()
                 .Subscribe(OnAttackTimerValueChanged)
+                .AddTo(this);
+
+            // Healthが減った時
+            _model.Health.AsObservable()
+                .Subscribe(health => _view.SetHealthBarValue(_model.MaxHealth.Value, health))
                 .AddTo(this);
         }
 
