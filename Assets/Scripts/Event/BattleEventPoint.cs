@@ -29,7 +29,6 @@ namespace CCG
 
         public override void OnHit()
         {
-            Debug.Log("Hit");
             // 敵を生成、バトルマネージャにセット
             EnemyPresenter enemy = EnemyPresenter.Create(transform.parent);
             var param = new EnemyParam

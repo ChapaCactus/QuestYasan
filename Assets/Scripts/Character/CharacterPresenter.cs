@@ -44,13 +44,22 @@ namespace CCG
             _isInitialized = true;
         }
 
+        public void SetState(CharacterState state)
+        {
+            _model.State.Value = state;
+        }
+
         /// <summary>
         /// 行動を進める
         /// </summary>
         private void Next()
         {
+            // TODO: ステートのクラス化
             // 待機中は何もしない
             if (_model.State.Value == CharacterState.Waiting)
+            {
+                return;
+            } else if(_model.State.Value == CharacterState.Battle)
             {
                 return;
             }

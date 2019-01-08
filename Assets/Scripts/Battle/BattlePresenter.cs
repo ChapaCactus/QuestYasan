@@ -53,6 +53,7 @@ namespace CCG
 
         private void StartBattle()
         {
+            GameManager.BattleManager.Character.SetState(Enums.CharacterState.Battle);
         }
     }
 }
