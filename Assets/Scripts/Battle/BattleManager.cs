@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UniRx;
 
 namespace CCG
 {
@@ -10,7 +11,7 @@ namespace CCG
     {
         public UserModel UserModel { get; private set; }
 
-        public EnemyPresenter Enemy { get; private set; }
+        public BattlePresenter Battle { get; private set; }
 
         public HeaderPresenter Header { get; private set; }
         public HandsPresenter Hands { get; private set; }
@@ -22,6 +23,9 @@ namespace CCG
         public void Initialize()
         {
             UserModel = new UserModel();
+
+            Battle = BattlePresenter.Create(MainCanvas.I.UIParent);
+            Battle.Initialize();
 
             // ヘッダー
             Header = HeaderPresenter.Create(MainCanvas.I.UIParent);
@@ -60,7 +64,7 @@ namespace CCG
 
         public void SetEnemy(EnemyPresenter enemy)
         {
-            Enemy = enemy;
+            Battle.SetEnemy(enemy);
         }
 
         /// <summary>

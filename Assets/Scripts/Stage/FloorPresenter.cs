@@ -46,10 +46,8 @@ namespace CCG
             // 表示初期化
             _view.SetFloorNameText(_model.FloorName);
 
-            // TODO: クラス化
-            // EventPoint生成、初期化
-            var eventPointPrefab = Resources.Load<Image>(EventPointPrefabPath);
-            Image eventPoint = Instantiate(eventPointPrefab, transform);
+            // TODO: バトル以外のEventを配置
+            BattleEventPoint eventPoint = BattleEventPoint.Create(transform);
             eventPoint.transform.localPosition = GetPositionLerp(_model.CardModel.EventPoint);
         }
 
