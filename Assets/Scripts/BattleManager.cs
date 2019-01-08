@@ -10,6 +10,8 @@ namespace CCG
     {
         public UserModel UserModel { get; private set; }
 
+        public EnemyPresenter Enemy { get; private set; }
+
         public HeaderPresenter Header { get; private set; }
         public HandsPresenter Hands { get; private set; }
         public CardDescriptionPresenter CardDescription { get; private set; }
@@ -54,6 +56,11 @@ namespace CCG
             // TODO: 現在のフロアで開始
             Character = CharacterPresenter.Create(Stage.GetFloor(0).transform);
             Character.Initialize();
+        }
+
+        public void SetEnemy(EnemyPresenter enemy)
+        {
+            Enemy = enemy;
         }
 
         /// <summary>
