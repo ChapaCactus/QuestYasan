@@ -49,6 +49,11 @@ namespace CCG
             _model.State.Value = state;
         }
 
+        public void ForwardBattleTimer(float forward)
+        {
+            _model.AttackTimer.Value -= forward;
+        }
+
         /// <summary>
         /// 行動を進める
         /// </summary>
@@ -91,6 +96,11 @@ namespace CCG
             _model.State.AsObservable()
                 .Subscribe(OnStateChanged)
                 .AddTo(this);
+
+            // AttackTimer更新時
+            _model.AttackTimer.AsObservable()
+                .Subscribe(OnAttackTimerValueChanged)
+                .AddTo(this);
         }
 
         protected override void BindViewEvents()
@@ -118,6 +128,17 @@ namespace CCG
 
             _currentFloor.Progress = 0;
             transform.SetParent(_currentFloor.transform);
+        }
+
+        private void OnAttackTimerValueChanged(float timer)
+        {
+            // 0以下になっていればリセット
+            if(_model.AttackTimer.Value <= 0)
+            {
+                // TODO: リセット値を正しいものにする
+                _model.AttackTimer.Value = 1;
+                Debug.Log("Attack!");
+            }
         }
     }
 

@@ -10,6 +10,8 @@ namespace CCG
         private const string PrefabPath = "Prefabs/BattleEventPoint";
 
         public float ProgressThreshold { get; private set; }
+        // 接触したか
+        public bool IsUsed { get; private set; }
 
         public EnemyMaster.rowIds EnemyId { get; private set; }
         public EnemyMasterRow EnemyMasterRow { get; private set; }
@@ -29,6 +31,7 @@ namespace CCG
 
         public override void OnHit()
         {
+            IsUsed = true;
             // 敵を生成、バトルマネージャにセット
             EnemyPresenter enemy = EnemyPresenter.Create(transform.parent);
             var param = new EnemyParam

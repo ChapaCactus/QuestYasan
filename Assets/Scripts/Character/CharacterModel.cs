@@ -15,12 +15,15 @@ namespace CCG
 
         public float MoveSpeed => BaseMoveSpeed;
 
+        public FloatReactiveProperty AttackTimer { get; set; }
+
         /// <summary>
         /// コンストラクタ
         /// </summary>
         public CharacterModel()
         {
             State.Value = CharacterState.Waiting;
+            AttackTimer = new FloatReactiveProperty(1);
         }
     }
 

@@ -91,7 +91,13 @@ namespace CCG
 
         private void OnProgressValueChanged(float progress)
         {
-            if(progress >= _eventPoint.ProgressThreshold)
+            // 既に接触したEventPointなら何もしない
+            if(_eventPoint.IsUsed)
+            {
+                return;
+            }
+
+            if (progress >= _eventPoint.ProgressThreshold)
             {
                 _eventPoint.OnHit();
             }
