@@ -13,7 +13,7 @@ namespace CCG
 
         public void Initialize()
         {
-            GameManager.Initialize();
+            Game.Initialize();
         }
     }
 }

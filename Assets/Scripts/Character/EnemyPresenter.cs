@@ -68,7 +68,7 @@ namespace CCG
             // 0以下になっていれば行動してリセット
             if (_model.AttackTimer.Value <= 0)
             {
-                CharacterPresenter player = GameManager.BattleManager.Character;
+                CharacterPresenter player = Game.Stage.Character;
                 player.Damage(_model.Attack.Value);
                 // TODO: リセット値を正しいものにする
                 _model.AttackTimer.Value = 1;

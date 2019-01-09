@@ -40,7 +40,7 @@ namespace CCG
                 EnemyMasterRow = EnemyMasterRow,
             };
             enemy.Initialize(param);
-            GameManager.BattleManager.SetEnemy(enemy);
+            Game.Stage.SetEnemy(enemy);
 
             gameObject.SetActive(false);
         }

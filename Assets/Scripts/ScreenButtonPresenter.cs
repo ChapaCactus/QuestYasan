@@ -21,7 +21,7 @@ namespace CCG
         public void Setup()
         {
             _button.OnClickAsObservable()
-                .Subscribe(_ => GameManager.BattleManager.OnScreenButton())
+                .Subscribe(_ => Game.Stage.OnScreenButton())
                 .AddTo(this);
         }
     }

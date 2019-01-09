@@ -45,7 +45,7 @@ namespace CCG
             // カード選択がオンになった時のみ
             _model.IsSelect
                 .Where(isSelect => isSelect)
-                .Subscribe(isSelect => GameManager.BattleManager.OnSelectCard(_model.UniqueId))
+                .Subscribe(isSelect => Game.Stage.OnSelectCard(_model.UniqueId))
                 .AddTo(this);
         }
 

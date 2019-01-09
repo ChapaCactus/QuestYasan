@@ -48,7 +48,7 @@ namespace CCG
 
             if (IsDead)
             {
-                GameManager.BattleManager.OnDead(IsPlayer);
+                Game.Stage.OnDead(IsPlayer);
             }
         }
     }

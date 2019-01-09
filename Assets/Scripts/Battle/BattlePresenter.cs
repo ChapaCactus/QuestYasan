@@ -11,7 +11,7 @@ namespace CCG
 
         private const float BattleSpeed = 0.01f;
 
-        public CharacterPresenter Player => GameManager.BattleManager.Character;
+        public CharacterPresenter Player => Game.Stage.Character;
         public ReactiveProperty<EnemyPresenter> Enemy { get; private set; }
 
         public bool IsBattle { get; private set; }
@@ -69,7 +69,7 @@ namespace CCG
 
         private void StartBattle()
         {
-            GameManager.BattleManager.Character.SetState(Enums.CharacterState.Battle);
+            Game.Stage.Character.SetState(Enums.CharacterState.Battle);
             IsBattle = true;
         }
     }

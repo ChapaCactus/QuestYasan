@@ -44,7 +44,7 @@ namespace CCG
                 .OrderBy(x => Guid.NewGuid())
                 .FirstOrDefault();
 
-            int uniqueId = GameManager.UniqueIdManager.GetNewId();
+            int uniqueId = Game.UniqueIdManager.GetNewId();
 
             CardModel model = new CardModel(masterId, uniqueId);
             Cards.Add(model);

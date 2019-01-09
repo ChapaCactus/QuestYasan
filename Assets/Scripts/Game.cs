@@ -5,14 +5,14 @@ using UnityEngine.Assertions;
 
 namespace CCG
 {
-    public static class GameManager
+    public static class Game
     {
-        public static BattleManager BattleManager { get; private set; } = new BattleManager();
+        public static StageManager Stage { get; private set; } = new StageManager();
         public static UniqueIdManager UniqueIdManager { get; private set; } = new UniqueIdManager();
 
         public static void Initialize()
         {
-            BattleManager.Initialize();
+            Stage.Initialize();
             UniqueIdManager.Initialize();
         }
     }

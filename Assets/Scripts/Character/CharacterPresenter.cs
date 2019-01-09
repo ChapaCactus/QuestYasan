@@ -59,7 +59,7 @@ namespace CCG
 
         public void ForwardBattleTimer(float forward)
         {
-            if(GameManager.BattleManager.Battle.Enemy.Value == null)
+            if(Game.Stage.Battle.Enemy.Value == null)
             {
                 return;
             }
@@ -140,7 +140,7 @@ namespace CCG
         private void OnCurrentFloorIndexChanged(int index)
         {
             // 親を変更後のフロアに設定
-            _currentFloor = GameManager.BattleManager.Stage.GetFloor(index);
+            _currentFloor = Game.Stage.Stage.GetFloor(index);
 
             // フロアが存在しなければ停止
             if (_currentFloor == null)
@@ -158,7 +158,7 @@ namespace CCG
             // 0以下になっていればリセット
             if(_model.AttackTimer.Value <= 0)
             {
-                EnemyPresenter enemy = GameManager.BattleManager.Battle.Enemy.Value;
+                EnemyPresenter enemy = Game.Stage.Battle.Enemy.Value;
                 enemy.Damage(_model.Attack.Value);
                 // TODO: リセット値を正しいものにする
                 _model.AttackTimer.Value = 1;

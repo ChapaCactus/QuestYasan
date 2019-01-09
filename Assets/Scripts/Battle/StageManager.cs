@@ -7,7 +7,7 @@ using UniRx;
 
 namespace CCG
 {
-    public class BattleManager
+    public class StageManager
     {
         public UserModel UserModel { get; private set; }
 
