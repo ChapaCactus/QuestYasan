@@ -33,6 +33,11 @@ namespace CCG
 
         public void ForwardBattleTimer(float forward)
         {
+            if(_model.IsDead)
+            {
+                return;
+            }
+
             _model.AttackTimer.Value -= forward;
         }
 

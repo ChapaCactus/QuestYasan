@@ -59,6 +59,11 @@ namespace CCG
 
         public void ForwardBattleTimer(float forward)
         {
+            if(GameManager.BattleManager.Battle.Enemy.Value == null)
+            {
+                return;
+            }
+
             _model.AttackTimer.Value -= forward;
         }
 

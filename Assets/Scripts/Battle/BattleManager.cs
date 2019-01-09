@@ -75,6 +75,8 @@ namespace CCG
             if(!isPlayer)
             {
                 Character.SetState(Enums.CharacterState.Moving);
+                GameObject.Destroy(Battle.Enemy.Value.gameObject);
+                Battle.SetEnemy(null);
             }
         }
 
