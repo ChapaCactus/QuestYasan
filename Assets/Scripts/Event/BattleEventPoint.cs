@@ -38,7 +38,6 @@ namespace CCG
             {
                 EnemyId = EnemyId,
                 EnemyMasterRow = EnemyMasterRow,
-
             };
             enemy.Initialize(param);
             GameManager.BattleManager.SetEnemy(enemy);

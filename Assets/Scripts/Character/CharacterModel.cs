@@ -16,6 +16,8 @@ namespace CCG
         public float MoveSpeed => BaseMoveSpeed;
 
         public bool IsPlayer { get; set; }
+
+        public string Name { get; set; }
         public IntReactiveProperty MaxHealth { get; set; }
         public IntReactiveProperty Health { get; set; }
         public IntReactiveProperty Attack { get; set; }
@@ -41,10 +43,10 @@ namespace CCG
                 return;
             }
 
-            Debug.Log($"Damage! left: {damage}, amount: {Health.Value - damage}");
             Health.Value -= damage;
+            Debug.Log($"{Name}は{damage}ダメージを受けた。 残りHealth:{Health.Value}");
 
-            if(IsDead)
+            if (IsDead)
             {
                 GameManager.BattleManager.OnDead(IsPlayer);
             }

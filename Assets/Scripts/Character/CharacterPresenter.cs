@@ -34,6 +34,7 @@ namespace CCG
 
             _model = new CharacterModel
             {
+                Name = "わたし",
                 MaxHealth = new IntReactiveProperty(30),
                 Health = new IntReactiveProperty(30),
                 Attack = new IntReactiveProperty(5),
@@ -156,7 +157,7 @@ namespace CCG
                 enemy.Damage(_model.Attack.Value);
                 // TODO: リセット値を正しいものにする
                 _model.AttackTimer.Value = 1;
-                Debug.Log("Attack!");
+                Debug.Log($"{_model.Name}の攻撃！");
             }
         }
     }

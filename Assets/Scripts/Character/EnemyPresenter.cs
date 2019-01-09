@@ -19,8 +19,10 @@ namespace CCG
 
         public override void Initialize(IParameter param)
         {
+            EnemyParam enemyParam = param as EnemyParam;
             _model = new CharacterModel()
             {
+                Name = enemyParam.EnemyMasterRow._Name,
                 Health = new IntReactiveProperty(10),
                 Attack = new IntReactiveProperty(1),
             };
@@ -65,7 +67,7 @@ namespace CCG
                 player.Damage(_model.Attack.Value);
                 // TODO: リセット値を正しいものにする
                 _model.AttackTimer.Value = 1;
-                Debug.Log("Enemy Attack!");
+                Debug.Log($"{_model.Name}の攻撃！");
             }
         }
     }
