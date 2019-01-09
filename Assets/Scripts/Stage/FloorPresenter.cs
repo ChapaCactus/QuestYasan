@@ -97,7 +97,8 @@ namespace CCG
                 return;
             }
 
-            if (progress >= _eventPoint.ProgressThreshold)
+            // TODO: 調整値0.2fを定数化、または計算する
+            if (progress >= (_eventPoint.ProgressThreshold - 0.2f))
             {
                 _eventPoint.OnHit();
             }
