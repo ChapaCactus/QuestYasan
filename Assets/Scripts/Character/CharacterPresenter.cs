@@ -71,6 +71,8 @@ namespace CCG
         public void Damage(int damage)
         {
             _model.Damage(damage);
+
+            DamageTextManager.CreateText(damage);
         }
 
         /// <summary>
