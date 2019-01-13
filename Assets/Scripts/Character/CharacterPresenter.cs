@@ -48,6 +48,7 @@ namespace CCG
             _model.State.Value = CharacterState.Moving;
 
             _view.SetHealthBarValue(_model.MaxHealth.Value, _model.Health.Value);
+            _view.SetFlip(isRight: true);
 
             _isInitialized = true;
         }
