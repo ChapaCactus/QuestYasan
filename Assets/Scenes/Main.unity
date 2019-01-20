@@ -227,6 +227,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiParent: {fileID: 1394238200}
   _screenButtonParent: {fileID: 518330251}
+  _mainCamera: {fileID: 0}
+  _uiCamera: {fileID: 0}
 --- !u!1 &320940928
 GameObject:
   m_ObjectHideFlags: 0

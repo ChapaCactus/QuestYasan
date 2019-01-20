@@ -72,7 +72,7 @@ namespace CCG
         {
             _model.Damage(damage);
 
-            DamageTextManager.CreateText(damage);
+            DamageTextManager.CreateText(damage, transform.position);
         }
 
         /// <summary>
